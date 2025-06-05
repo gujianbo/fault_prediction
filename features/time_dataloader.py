@@ -27,11 +27,7 @@ def collate_fn(batch):
     # 确保标签是张量格式
     tensor_labels = torch.tensor(labels) if not isinstance(labels[0], torch.Tensor) else torch.stack(labels)
 
-    return {
-        'sequences': padded_sequences,
-        'labels': tensor_labels,
-        'lengths': torch.tensor(lengths)
-    }
+    return padded_sequences, tensor_labels, lengths
 
 class TimeDataLoader(Dataset):
     def __init__(self, filename, max_seq_len, normalize=True, feature_processors=None):
