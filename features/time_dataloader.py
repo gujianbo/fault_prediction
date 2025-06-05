@@ -113,6 +113,8 @@ class TimeDataLoader(Dataset):
 
 
     def _advanced_normalize_features(self):
+        if self.feature_processors is None:
+            self.feature_processors = []
         all_features = [list(features) for seq in self.data for features in seq]
         if not all_features:
             return
