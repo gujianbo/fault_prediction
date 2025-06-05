@@ -15,17 +15,21 @@ def collate_fn(batch):
 
     # 获取每个序列的长度
     lengths = torch.tensor([len(seq) for seq in sequences])
+    tensor_sequences = [torch.tensor(seq) for seq in sequences]
 
     # 填充序列 (batch_size, max_len, n_features)
     padded_sequences = pad_sequence(
-        sequences,
+        tensor_sequences,
         batch_first=True,
         padding_value=0
     )
 
+    # 确保标签是张量格式
+    tensor_labels = torch.tensor(labels) if not isinstance(labels[0], torch.Tensor) else torch.stack(labels)
+
     return {
         'sequences': padded_sequences,
-        'labels': torch.stack(labels),
+        'labels': tensor_labels,
         'lengths': torch.tensor(lengths)
     }
 
@@ -209,4 +213,5 @@ class TimeDataLoader(Dataset):
 
             normalized_data.append(norm_seq)
             current_idx += len(seq)
+        self.data = normalized_data
 
