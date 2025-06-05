@@ -103,7 +103,7 @@ class TimeDataLoader(Dataset):
                     sequence = sequence[:self.max_seq_len]
                 self.data.append(sequence)
                 self.label.append(label)
-                self.seq_lengths.append(len(sequence))
+                # self.seq_lengths.append(len(sequence))
 
         logger.info("Load done! To normalize")
         if self.normalize:
@@ -143,7 +143,7 @@ class TimeDataLoader(Dataset):
                     # 标准标准化
                     scaler = StandardScaler()
                     scaler.fit(col_data)
-            self.feature_scalers.append(scaler)
+            self.feature_processors.append(scaler)
 
     def _normalize_features(self):
         # all_features = [list(features) for seq in self.data for features in seq]
@@ -187,7 +187,7 @@ class TimeDataLoader(Dataset):
             for features in seq:
                 norm_features = []
                 for col_idx, value in enumerate(features):
-                    scaler = self.feature_scalers[col_idx]
+                    scaler = self.feature_processors[col_idx]
 
                     if scaler is None:
                         # 不需要归一化的特征
