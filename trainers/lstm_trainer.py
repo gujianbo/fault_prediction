@@ -13,10 +13,9 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, model_pat
             # logging.info(f"X_batch: {X_batch}")
             # logging.info(f"length_batch: {length_batch}")
             # logging.info(f"y_batch: {y_batch}")
-
-            logging.info(f"X_batch.shape: {X_batch.shape}, {X_batch}")
-            logging.info(f"length_batch.shape: {length_batch.shape}, {length_batch}")
-            logging.info(f"y_batch.shape: {y_batch.shape}, {y_batch}")
+            logging.info(f"X_batch.shape: {X_batch.shape}")
+            logging.info(f"length_batch.shape: {length_batch.shape}")
+            logging.info(f"y_batch.shape: {y_batch.shape}")
             model.train()
             optimizer.zero_grad()
             outputs = model(X_batch, length_batch)

@@ -15,7 +15,7 @@ def collate_fn(batch):
 
     # 获取每个序列的长度
     lengths = torch.tensor([len(seq) for seq in sequences])
-    tensor_sequences = [torch.tensor(seq) for seq in sequences]
+    tensor_sequences = [torch.tensor(seq, dtype=torch.float32) for seq in sequences]
 
     # 填充序列 (batch_size, max_len, n_features)
     padded_sequences = pad_sequence(
@@ -25,9 +25,9 @@ def collate_fn(batch):
     )
 
     # 确保标签是张量格式
-    tensor_labels = torch.tensor(labels) if not isinstance(labels[0], torch.Tensor) else torch.stack(labels)
+    tensor_labels = torch.tensor(labels, dtype=torch.float32) if not isinstance(labels[0], torch.Tensor) else torch.stack(labels).float()
 
-    return padded_sequences, tensor_labels, lengths
+    return padded_sequences, lengths, tensor_labels
 
 class TimeDataLoader(Dataset):
     def __init__(self, filename, max_seq_len, normalize=True, feature_processors=None):
