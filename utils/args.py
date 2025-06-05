@@ -7,6 +7,7 @@ parser = argparse.ArgumentParser(description='Pipeline commandline argument')
 parser.add_argument("--train_file", type=str, default='', help="train_file")
 parser.add_argument("--valid_file", type=str, default='', help="valid_file")
 parser.add_argument("--model_path", type=str, default='', help="model_path")
+parser.add_argument("--log_file", type=str, default='', help="log_file")
 
 parser.add_argument("--input_dim", type=int, default='22', help="input_dim")
 parser.add_argument("--hidden_dim", type=int, default='128', help="hidden_dim")
