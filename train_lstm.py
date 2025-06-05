@@ -9,6 +9,8 @@ import logging
 LOG_FORMAT = "%(asctime)s - %(levelname)s - %(filename)s[line:%(lineno)d]- %(message)s"
 logging.basicConfig(filename=config.log_file, level=logging.DEBUG, format=LOG_FORMAT)
 
+logging.info("\n\n\n\n-----------------------------------begin to train-----------------------------------------\n")
+
 model = LSTMModel(input_dim=config.input_dim, hidden_dim=config.hidden_dim, num_layers=config.num_layers, dropout=config.dropout)
 
 optimizer = torch.optim.AdamW(
