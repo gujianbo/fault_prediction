@@ -45,7 +45,7 @@ class TimeDataLoader(Dataset):
     def __len__(self):
         return len(self.data)
 
-    def extract_time_features(datetime_str):
+    def extract_time_features(self, datetime_str):
         dt = datetime.strptime(datetime_str, "%Y-%m-%d %H:%M:%S")
 
         # 基本时间特征

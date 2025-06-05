@@ -11,4 +11,4 @@ nohup python train_lstm.py \
   --max_seq_len 500 \
   --log_step 10 \
   --eval_step 20 \
-  --save_step 20 > log 2>&1 &
+  --save_step 20 > /data/models/log 2>&1 &
